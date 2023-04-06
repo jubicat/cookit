@@ -13,18 +13,20 @@ function GenerateRecipe() {
 
   const generateData = async () => {
     
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer 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",
+        },
+        body: JSON.stringify({ "inputs": ingredients.map((i) => i.title) }),
+      }
       const response = await fetch(
         "https://api-inference.huggingface.co/models/flax-community/t5-recipe-generation",
-        {
-          headers: {
-            Authorization: "Bearer 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",
-          },
-          method: "POST",
-          body: JSON.stringify(ingredients),
-        }
+        requestOptions
       );
 
       const result = await response.json();
+      console.log(result);
 
       const reps =
         result.length > 0 &&
@@ -46,6 +48,7 @@ function GenerateRecipe() {
       setRecipes(reps)
   };
 
+  console.log(ingredients)
   return (
     <div className="h-full px-[8%] xl:px-[15%] flex-auto overflow-auto bg-slate-800 text-white py-4">
       <Header>FIND NEW RECIPES</Header>
