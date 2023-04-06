@@ -20,6 +20,7 @@ function GenerateRecipe() {
         },
         body: JSON.stringify({ "inputs": ingredients.map((i) => i.title) }),
       }
+      
       const response = await fetch(
         "https://api-inference.huggingface.co/models/flax-community/t5-recipe-generation",
         requestOptions
