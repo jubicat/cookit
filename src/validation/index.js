@@ -1,0 +1,1 @@
+export { detailSchema } from "./detail-schema";
